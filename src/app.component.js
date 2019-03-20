@@ -9,6 +9,10 @@ export default {
     isLogIn() {
       /* eslint-disable */
       console.log(this.$store.getters.IS_LOGIN);
+
+      /* eslint-disable */
+      console.log(process.env.VUE_APP_GOOGLE_API_KEY);
+      console.log(process.env.NODE_ENV);
       return this.$store.getters.IS_LOGIN
     }
   },
