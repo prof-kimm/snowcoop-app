@@ -6,12 +6,12 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    token: null,
-    user: null,
+    token: null || localStorage.getItem('token'),
+    user: null || localStorage.getItem('user')
   },
   getters: {
     USER: state => {
-      return state.user;
+      return JSON.parse(state.user);
     },
     IS_LOGIN: state => {
       return !!state.token;
@@ -27,27 +27,27 @@ const store = new Vuex.Store({
   },
   actions: {
     LOG_IN: (context, payload) => {
-      return AuthService.login(payload).then(async (payload) => {
+      return AuthService.login(payload).then(async payload => {
         const { user, token } = payload;
         AuthService.storeToken(token);
         AuthService.setHeader(token);
-        await context.commit('SET_TOKEN', token);
+        await context.commit("SET_TOKEN", token);
 
         AuthService.storeUser(user);
-        await context.commit('SET_USER', user);
+        await context.commit("SET_USER", user);
         return user;
       });
     },
 
     REGISTER: (context, payload) => {
-      return AuthService.register(payload).then(async (payload) => {
+      return AuthService.register(payload).then(async payload => {
         const { user, token } = payload;
         AuthService.storeToken(token);
         AuthService.setHeader(token);
-        await context.commit('SET_TOKEN', token);
+        await context.commit("SET_TOKEN", token);
 
         AuthService.storeUser(user);
-        await context.commit('SET_USER', user);
+        await context.commit("SET_USER", user);
         return user;
       });
     }

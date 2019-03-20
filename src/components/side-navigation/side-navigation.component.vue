@@ -8,7 +8,7 @@
         <span>Dashboard</span>
       </el-menu-item>
       <el-menu-item index="/list">
-        <span>List</span>
+        <span>Address List</span>
       </el-menu-item>
     </el-menu>
   </div>
