@@ -7,6 +7,8 @@ export default {
   },
   computed: {
     isLogIn() {
+      /* eslint-disable */
+      console.log(this.$store.getters.IS_LOGIN);
       return this.$store.getters.IS_LOGIN
     }
   },
