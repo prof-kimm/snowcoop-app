@@ -1,3 +1,13 @@
-#sideNavigation {
+#mapView {
   height: 100%;
+  width: 100%;
+}
+
+.address-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.map-wrapper {
+  width: 100%;
 }
