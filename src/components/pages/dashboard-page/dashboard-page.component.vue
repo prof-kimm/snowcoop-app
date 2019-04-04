@@ -4,7 +4,10 @@
       <span class="welcome-title" v-if="user">
         {{ `Hi ${user.firstName}, welcome to Snowcoop` }}
       </span>
-      <map-view v-bind:showList="false"></map-view>
+      <map-view
+        v-bind:showList="false"
+        v-bind:addressList="listItems">
+      </map-view>
     </div>
   </div>
 </template>

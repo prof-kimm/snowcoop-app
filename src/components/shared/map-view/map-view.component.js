@@ -9,42 +9,51 @@ export default {
   },
   computed: {
     google: gmapApi,
-    
+    zoomValue() {
+      return this.currentPlace ? 18 : 14;
+    },
   },
   data() {
     return {
-      center: { lat: 45.2498124, lng: -76.0811186 },
+      // center: { lat: 45.2498124, lng: -76.0811186 },
+      center: null,
       markers: [],
       places: [],
-      currentPlace: null
+      currentPlace: null,
+      currentMarker: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
     };
   },
 
   mounted() {
-    this.setPlace(this.addressList[0]);
+    this.initPlaces(this.addressList);
   },
 
   methods: {
-    // receives a place object via the autocomplete component
-    setPlace(place) {
-      this.currentPlace = place;
-      this.addMarker(place);
-      /* eslint-disable */
-      console.log(place);
+    initPlaces(addressList) {
+      this.markers = addressList.map(address => this.buildMarker(address));
+      this.center = this.markers[0].position;
     },
-    addMarker(address) {
-      if (address) {
-        const marker = {
-          lat: address.lat,
-          lng: address.lng
-        };
-        this.markers.push({ position: marker });
-        // this.places.push(address);
-        this.center = marker;
-        // this.currentPlace = null;
-      }
+
+    buildMarker(address) {
+      const marker = {
+        lat: address.lat,
+        lng: address.lng
+      };
+      return { position: marker };
     },
-    geolocate: function() {
+
+    setLocation(address) {
+    /* eslint-disable */
+      console.log(address);
+      this.center = this.buildMarker(address).position;
+      this.currentPlace = address;
+    },
+
+    markerOptions(address) {
+      return address.id === this.currentPlace.id ? { url: this.currentMarker } : null;
+    },
+
+    getCurrerntLocation() {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {
           lat: position.coords.latitude,
