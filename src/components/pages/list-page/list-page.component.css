@@ -11,3 +11,39 @@
   display: flex;
   flex-direction: row;
 }
+
+.box-card > .el-card__body {
+  padding: 0;
+}
+
+.list-header {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list-title {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+}
+
+.list-view-wrapper {
+  margin-top: 20px;
+}
+
+.list-header-button-wrapper>button, .submit-button {
+  font-size: 18px;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: bold;
+  background-color: #1974e8;
+  color: white;
+  border: none;
+}
+
+.submit-button:hover {
+  background-color: #8ac1ff;
+}

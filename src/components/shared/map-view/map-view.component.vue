@@ -6,6 +6,7 @@
           v-for="address in addressList"
           :key="address.id"
           class="address-item"
+          v-bind:class="{ 'current-place': currentPlace && address.id === currentPlace.id }"
           @click="setLocation(address)">
           {{ address.street }}
         </div>

@@ -13,7 +13,7 @@ const store = new Vuex.Store({
   },
   getters: {
     USER: state => {
-      return JSON.parse(state.user);
+      return state.user;
     },
     IS_LOGIN: state => {
       return !!state.token;

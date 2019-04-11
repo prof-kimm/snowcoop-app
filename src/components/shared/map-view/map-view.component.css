@@ -9,7 +9,10 @@
 }
 
 .address-item {
-  padding: 5px;
+  padding-top: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 8px;
 }
 
 .address-item:hover {
@@ -17,12 +20,16 @@
   color: white;
 }
 
+.current-place {
+  background-color: #a4d4f6;
+  color: white;
+}
+
 .map-wrapper {
   width: 100%;
-  /* width: fit-content; */
 }
 
 .items-wrapper {
   min-width: fit-content;
-  padding-right: 10px;
+  overflow-y: scroll;
 }

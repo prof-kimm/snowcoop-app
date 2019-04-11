@@ -14,3 +14,12 @@
   font-size: 24px;
   font-weight: bold;
 }
+
+.list-wrapper {
+  padding: 100px;
+}
+
+.address-list {
+  display: flex;
+  flex-direction: row;
+}
