@@ -65,6 +65,11 @@ const store = new Vuex.Store({
         .then(async response => {
           if (response.status === 200 || response.status === 201) {
             const { payload } = response.data;
+            const addresses = payload.map(address => {
+              address.lat = Number(address.lat);
+              address.lng = Number(address.lng);
+              return address;
+            });
             await context.commit('SET_ADDRESS_LIST', payload);
             return payload;
           }
