@@ -61,20 +61,10 @@ const store = new Vuex.Store({
     },
 
     GET_ADDRESS_LIST: (context) => {
-      return Axios.get('http://localhost:3000/address')
-        .then(async response => {
-          if (response.status === 200 || response.status === 201) {
-            const { payload } = response.data;
-            const addresses = payload.map(address => {
-              address.lat = Number(address.lat);
-              address.lng = Number(address.lng);
-              return address;
-            });
-            await context.commit('SET_ADDRESS_LIST', payload);
-            return payload;
-          }
-        });
-    }
+      return AddressService.getAddressList(payload).then(async payload => {
+        await context.commit('SET_ADDRESS_LIST', payload);
+        return payload;
+      });
   }
 });
 
