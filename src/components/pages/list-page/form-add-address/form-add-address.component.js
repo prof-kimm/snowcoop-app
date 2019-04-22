@@ -12,7 +12,9 @@ export default {
   methods: {
     submit() {
       this.$store.dispatch("ADD_ADDRESS", this.formData).then(address => {
-        this.toggleForm(false);
+        if (address) {
+          this.toggleForm(false);
+        }
       });
     },
     toggleForm(showForm) {

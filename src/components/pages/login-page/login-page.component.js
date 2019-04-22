@@ -1,30 +1,43 @@
 export default {
-  name: 'loginPage',
+  name: "loginPage",
   components: {},
   data() {
     return {
       formData: {
         email: null,
-        password: null,
+        password: null
       },
       rules: {
         email: [
-          { required: true, message: 'Please input email address', trigger: 'blur' },
-          { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
+          {
+            required: true,
+            message: "Please input email address",
+            trigger: "blur"
+          },
+          {
+            type: "email",
+            message: "Please input correct email address",
+            trigger: ["blur", "change"]
+          }
         ],
         password: [
-          { required: true, message: 'Please input password', trigger: 'blur' }
+          { required: true, message: "Please input password", trigger: "blur" }
         ]
       },
-      isFormValidated: false,
+      isFormValidated: false
     };
+  },
+  mounted() {
+    if (this.$store.getters.IS_LOGIN) {
+      this.$router.push("dashboard");
+    }
   },
   methods: {
     updateIsFormValidated() {
       const fields = this.$refs.formData.fields;
       this.isFormValidated = fields.reduce((acc, field) => {
-        const valid = (field.isRequired && field.validateState === 'success');
-        const noError = (!field.isRequired && field.validateState !== 'error');
+        const valid = field.isRequired && field.validateState === "success";
+        const noError = !field.isRequired && field.validateState !== "error";
         return acc && (valid || noError);
       }, true);
     },
@@ -34,23 +47,25 @@ export default {
           email: this.formData.email,
           password: this.formData.password
         };
-        this.$store.dispatch('LOG_IN', credentials).then(
-          (user) => this.onLoginSuccessful(user),
-          (error) => this.onLoginFailed(error)
-        );
+        this.$store
+          .dispatch("LOG_IN", credentials)
+          .then(
+            user => this.onLoginSuccessful(user),
+            error => this.onLoginFailed(error)
+          );
       }
     },
     onLoginSuccessful(user) {
       if (!user) {
-        throw new Error('Something went wrong!');
+        throw new Error("Something went wrong!");
       }
 
-      this.$router.push('dashboard');
+      this.$router.push("dashboard");
     },
 
     onLoginFailed(error) {
       /* eslint-disable */
       console.error(error);
-    },
+    }
   }
 };
