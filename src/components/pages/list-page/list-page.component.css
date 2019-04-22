@@ -22,6 +22,10 @@
   font-family: Roboto;
   font-size: 24px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .list-header-button-wrapper > button {
