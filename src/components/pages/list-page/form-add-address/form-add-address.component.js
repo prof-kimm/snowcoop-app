@@ -4,9 +4,24 @@ export default {
     return {
       showForm: false,
       place: null,
-      formData: {},
-      rules: {},
-      isFormValidated: false
+      formData: {
+        street: null,
+        city: null,
+        province: null,
+        postalCode: null,
+        lat: null,
+        lng: null
+      },
+      rules: {
+        street: [{ required: true }],
+        city: [{ required: true }],
+        province: [{ required: true }],
+        postalCode: [{ required: true }],
+        lat: [{ required: true }],
+        lng: [{ required: true }]
+      },
+      isFormValidated: false,
+      addressInput: null
     };
   },
   methods: {
@@ -19,9 +34,16 @@ export default {
     },
     toggleForm(showForm) {
       this.showForm = showForm;
-      if (!showForm) {
-        this.place = null;
-      }
+    },
+    handleClose() {
+      this.place = null;
+      this.formData.street = null;
+      this.formData.city = null;
+      this.formData.province = null;
+      this.formData.postalCode = null;
+      this.formData.lat = null;
+      this.formData.lng = null;
+      this.addressInput = null;
     },
     setPlace(place) {
       const { address_components, geometry } = place;
