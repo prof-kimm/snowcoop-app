@@ -19,6 +19,9 @@ export default {
     },
     toggleForm(showForm) {
       this.showForm = showForm;
+      if (!showForm) {
+        this.place = null;
+      }
     },
     setPlace(place) {
       const { address_components, geometry } = place;
